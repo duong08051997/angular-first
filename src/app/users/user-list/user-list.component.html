@@ -12,9 +12,10 @@
     <input type="text" class="form-control" style=" padding-left: 2.375rem;" placeholder="Search"  (keyup)="search($event)">
   </div>
   <button class="btn btn-success" data-toggle="modal" data-target="#add">Add</button>
-<!--  <button (click)="hiddenOrShow()" class="btn btn-dark" style="margin-left: 15px" >hidden/show</button>-->
-<!--  <input type="checkbox" (click)="hiddenOrShow()" checked data-toggle="toggle">-->
-  <input id="chkToggle" type="checkbox" data-toggle="toggle">
+<div class="custom-control custom-switch" style="margin-left: 500px">
+    <input style="size: 40px"  type="checkbox" class="custom-control-input" id="customSwitch1" (click)="hiddenOrShow()" checked>
+    <label class="custom-control-label" for="customSwitch1"></label>
+  </div>
   <table class="table table-striped">
     <thead>
     <tr>
@@ -22,7 +23,7 @@
       <th scope="col" >Name</th>
       <th scope="col">Address</th>
       <th scope="col">Email</th>
-      <th></th>
+      <th ></th>
       <th></th>
     </tr>
     </thead>
