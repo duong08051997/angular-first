@@ -1,0 +1,10 @@
+
+  <input type="color" value="color" [(ngModel)]="color">
+  <p [style.background-color]="color" >Hello cc</p>
+
+<div class="container"> Months :
+  <select [(ngModel)]="month">
+    <option *ngFor="let i of months" >{{i}}</option>
+  </select>
+  {{month}}
+</div>

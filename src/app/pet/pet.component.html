@@ -1,0 +1,16 @@
+
+  <h2>Thông tin pet</h2>
+  <div class="form-group">
+    <label class="col-form-label">Pet name:</label>
+    <input type="text" class="form-control" [(ngModel)]="petName">
+  </div>
+  <div class="form-group">
+    <label class="col-form-label">Name:</label>
+    <input type="url" class="form-control" [(ngModel)]="petImage">
+  </div>
+  <input type="range" min="5" max="72" (change)="fontSizeAuto($event)"><br>
+  <input type="color" [(ngModel)]="color">
+  <h3 [style.color]="color" style="font-size:{{fontSize}}px" >Pet name : {{petName}}</h3>
+  <img (mousemove)="changeImg($event)" src="{{petImage}}" (mouseleave)="changImg2($event)" alt="" style="width:450px; height: 450px">
+
+

@@ -1,0 +1,12 @@
+
+  <input type="number" [(ngModel)]="number1" (change)="calculates()">
+  <select name="" id="" [(ngModel)]="calculate" (change)="calculates()">
+    <option value="plus">+</option>
+    <option value="subtraction">-</option>
+    <option value="multiplication">x</option>
+    <option value="division">:</option>
+  </select>
+  <input type="number" [(ngModel)]="number2" (change)="calculates()" >
+<!--  <input type="button" value="cal">-->
+  <p >{{result}}</p>
+
