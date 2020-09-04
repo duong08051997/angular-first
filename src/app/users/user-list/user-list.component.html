@@ -1,16 +1,5 @@
 
-  <div class="form-group has-search">
-    <span class="fa fa-search form-control-feedback" style=" position: absolute;
-    z-index: 2;
-    display: block;
-    width: 2.375rem;
-    height: 2.375rem;
-    line-height: 2.375rem;
-    text-align: center;
-    pointer-events: none;
-    color: #aaa;"></span>
-    <input type="text" class="form-control" style=" padding-left: 2.375rem;" placeholder="Search"  (keyup)="search($event)">
-  </div>
+<app-search (keyword)="search($event)"></app-search>
   <button class="btn btn-success" data-toggle="modal" data-target="#add" style="margin-bottom: 15px"><i class="fa fa-plus"></i> ADD</button>
   <select [(ngModel)]="filterCity" class="form-control" style="width: 30%">
     <option value="all" >Tất cả các thành phố</option>

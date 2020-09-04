@@ -72,8 +72,7 @@ export class UserListComponent implements OnInit {
   }
   // tslint:disable-next-line:typedef
   search(event){
-    const keyword = event.target.value.toLowerCase();
-    this.searchUser = (keyword) ? this.filterUser(keyword) : this.users;
+    this.searchUser = (event) ? this.filterUser(event) : this.users;
     console.log(this.searchUser);
   }
   // tslint:disable-next-line:typedef
