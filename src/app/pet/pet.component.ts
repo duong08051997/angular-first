@@ -6,7 +6,7 @@ import {Component, ElementRef, ViewChild} from '@angular/core';
   styleUrls: ['./pet.component.css']
 })
 export class PetComponent {
-color: string;
+color = 'red';
   constructor() {
     this.fontSize = '';
   }

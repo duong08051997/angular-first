@@ -7,54 +7,55 @@ import {IUser} from './user';
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
-  newId: number;
+  newId: string;
   newName: string;
   newAddress: string;
   newEmail: string;
+  filterCity = 'all';
   searchUser: IUser[] = [];
   user: IUser[] = [];
   users: IUser[] = [
     {
-      id: 1,
+      id: '1',
       name: 'Duong',
       address: 'Bac Giang',
       email: 'duong@gmail.com'
     },
     {
-      id: 2,
-      name: 'Duong2',
-      address: 'Bac Giang2',
-      email: 'duong2@gmail.com'
-    },
-    {
-      id: 3,
-      name: 'Duong3',
-      address: 'Bac Giang3',
-      email: 'duong3@gmail.com'
-    },
-    {
-      id: 4,
-      name: 'Duong4',
-      address: 'Bac Giang4',
-      email: 'duong4@gmail.com'
-    },
-    {
-      id: 5,
-      name: 'Duong5',
-      address: 'Bac Giang5',
-      email: 'duong5@gmail.com'
-    },
-    {
-      id: 6,
-      name: 'Duong6',
-      address: 'Bac Giang6',
-      email: 'duong6@gmail.com'
-    },
-    {
-      id: 7,
+      id: '2',
       name: 'Luc',
-      address: 'Nam Dinh',
+      address: 'Bac Giang',
       email: 'luc@gmail.com'
+    },
+    {
+      id: '3',
+      name: 'Tung',
+      address: 'Nam Dinh',
+      email: 'tung@gmail.com'
+    },
+    {
+      id: '4',
+      name: 'Cuong',
+      address: 'Bac Giang',
+      email: 'cuong@gmail.com'
+    },
+    {
+      id: '5',
+      name: 'Manh',
+      address: 'Bac Giang',
+      email: 'manh@gmail.com'
+    },
+    {
+      id: '6',
+      name: 'Viet Anh',
+      address: 'Nam Dinh',
+      email: 'anh@gmail.com'
+    },
+    {
+      id: '7',
+      name: 'Quang',
+      address: 'Nam Dinh',
+      email: 'quang@gmail.com'
     },
   ];
   hidden = false;
@@ -84,14 +85,13 @@ export class UserListComponent implements OnInit {
   }
   // tslint:disable-next-line:typedef
   delete(id){
-    // tslint:disable-next-line:triple-equals
-    const index = this.searchUser.findIndex(user => user.id == id);
+    const index = this.searchUser.findIndex(user => user.id === id);
     this.users.splice(index, 1);
   }
   // tslint:disable-next-line:typedef
   edit(id){
     // tslint:disable-next-line:triple-equals
-    const index = this.searchUser.findIndex(user => user.id == id);
+    const index = this.searchUser.findIndex(user => user.id === id);
     // @ts-ignore
     // tslint:disable-next-line:triple-equals
     this.newId = this.searchUser[index].id;
@@ -107,7 +107,7 @@ export class UserListComponent implements OnInit {
       address: this.newAddress,
       email: this.newEmail
     });
-    this.newId = Number('');
+    this.newId = '';
     this.newName = '';
     this.newAddress = '';
     this.newEmail = '';
@@ -121,6 +121,17 @@ export class UserListComponent implements OnInit {
       address: this.newAddress,
       email: this.newEmail
     });
+  }
+  // tslint:disable-next-line:typedef
+  showCity(address: string){
+    const all = this.filterCity === 'all';
+    const bacgiang = this.filterCity === 'Bac Giang' && address === 'Bac Giang' ;
+    const namdinh = this.filterCity === 'Nam Dinh' && address === 'Nam Dinh';
+    return all || bacgiang || namdinh;
+  }
+  // tslint:disable-next-line:typedef
+  reload(){
+    location.reload();
   }
 
 }

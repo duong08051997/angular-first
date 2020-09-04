@@ -11,13 +11,19 @@
     color: #aaa;"></span>
     <input type="text" class="form-control" style=" padding-left: 2.375rem;" placeholder="Search"  (keyup)="search($event)">
   </div>
-  <button class="btn btn-success" data-toggle="modal" data-target="#add">Add</button>
-<div class="custom-control custom-switch" style="margin-left: 500px">
+  <button class="btn btn-success" data-toggle="modal" data-target="#add" style="margin-bottom: 15px"><i class="fa fa-plus"></i> ADD</button>
+  <select [(ngModel)]="filterCity" class="form-control" style="width: 30%">
+    <option value="all" >Tất cả các thành phố</option>
+    <option value="Bac Giang" >Bắc Giang</option>
+    <option value="Nam Dinh" >Nam Định</option>
+  </select>
+<div class="custom-control custom-switch" style="margin-left: 700px">
     <input style="size: 40px"  type="checkbox" class="custom-control-input" id="customSwitch1" (click)="hiddenOrShow()" checked>
     <label class="custom-control-label" for="customSwitch1"></label>
   </div>
-  <table class="table table-striped">
-    <thead>
+
+  <table class="table">
+    <thead class="table-secondary">
     <tr>
       <th scope="col">Stt</th>
       <th scope="col" >Name</th>
@@ -27,25 +33,28 @@
       <th></th>
     </tr>
     </thead>
-    <tbody>
-    <tr *ngFor="let user of searchUser; let i = index">
+    <tbody *ngFor="let user of searchUser; let i = index">
+    <tr *ngIf="showCity(user.address)">
+
       <th scope="row">{{i+1}}</th>
       <td >{{user.name}}</td>
       <td>{{user.address}}</td>
       <td>{{user.email}}</td>
       <td [hidden]="hidden"><button type="button" class="btn btn-primary" (click)="edit(user.id)" data-toggle="modal" data-target="#exampleModalLong">
-        edit
+        <i class="fa fa-edit"></i>
       </button></td>
-      <td [hidden]="hidden"><button class=" btn btn-danger" (click)="delete(user.id)">delete</button></td>
+      <td [hidden]="hidden"><button class=" btn btn-danger" (click)="delete(user.id)"><i class="fa fa-trash"></i></button></td>
     </tr>
     </tbody>
   </table>
+  <button type="button" (click)="reload()" class="btn btn-success">Refresh <i class="fa fa-refresh fa-spin" style="font-size:20px"></i></button>
+
   <!--  Modal add-->
-  <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="addTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <h5 class="modal-title" id="addtitle">Thêm ngừoi dùng</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -53,7 +62,7 @@
         <div class="modal-body">
           <div class="form-group">
             <label class="col-form-label">Id user:</label>
-            <input type="number" class="form-control" placeholder="12.." [(ngModel)]="newId">
+            <input type="text" class="form-control" placeholder="12.." [(ngModel)]="newId">
           </div>
           <div class="form-group">
             <label class="col-form-label">Name user:</label>
@@ -61,7 +70,11 @@
           </div>
           <div class="form-group">
             <label class="col-form-label">Address:</label>
-            <input type="text" class="form-control" placeholder="Nam Định" [(ngModel)]="newAddress">
+            <select [(ngModel)]="newAddress" class="form-control" >
+              <option >--Chọn Thành Phố--</option>
+              <option  value="Bac Giang">Bac Giang</option>
+              <option  value="Nam Dinh">Nam Dinh</option>
+            </select>
           </div>
           <div class="form-group">
             <label class="col-form-label">Email:</label>
@@ -76,11 +89,11 @@
     </div>
   </div>
   <!-- Modal edit -->
-  <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="addTitle" aria-hidden="true">
+  <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="addTitle">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">Chỉnh sủa thông tin</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -88,7 +101,7 @@
         <div class="modal-body">
           <div class="form-group">
             <label class="col-form-label">Id user:</label>
-            <input type="number" class="form-control" placeholder="12.." [(ngModel)]="newId" disabled>
+            <input type="text" class="form-control" placeholder="12.." [(ngModel)]="newId" hidden>
           </div>
           <div class="form-group">
             <label class="col-form-label">Name user:</label>
@@ -96,7 +109,11 @@
           </div>
           <div class="form-group">
             <label class="col-form-label">Address:</label>
-            <input type="text" class="form-control" placeholder="Nam Định" [(ngModel)]="newAddress">
+            <select [(ngModel)]="newAddress" class="form-control" >
+              <option >--Chọn Thành Phố--</option>
+              <option  value="Bac Giang">Bac Giang</option>
+              <option  value="Nam Dinh">Nam Dinh</option>
+            </select>
           </div>
           <div class="form-group">
             <label class="col-form-label">Email:</label>
