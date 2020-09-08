@@ -1,17 +1,19 @@
 
 <app-search (keyword)="search($event)"></app-search>
   <button class="btn btn-success" data-toggle="modal" data-target="#add" style="margin-bottom: 15px"><i class="fa fa-plus"></i> ADD</button>
-  <select [(ngModel)]="filterCity" class="form-control" style="width: 30%">
+<select [(ngModel)]="filterCity" class="form-control" style="width: 30%">
     <option value="all" >Tất cả các thành phố</option>
     <option value="Bac Giang" >Bắc Giang</option>
     <option value="Nam Dinh" >Nam Định</option>
   </select>
-<div class="custom-control custom-switch" style="margin-left: 700px">
+<div class="custom-control custom-switch pt-3" >
     <input style="size: 40px"  type="checkbox" class="custom-control-input" id="customSwitch1" (click)="hiddenOrShow()" checked>
     <label class="custom-control-label" for="customSwitch1"></label>
   </div>
+<app-message  [message]="message" class="message">
 
-  <table class="table">
+</app-message>
+  <table class="table" style="margin-top: 10px">
     <thead class="table-secondary">
     <tr>
       <th scope="col">Stt</th>
@@ -22,9 +24,8 @@
       <th></th>
     </tr>
     </thead>
-    <tbody *ngFor="let user of searchUser; let i = index">
-    <tr *ngIf="showCity(user.address)">
-
+    <tbody *ngFor="let user of searchUser | paginate: { itemsPerPage: 4, currentPage: p } ;let i = index"  >
+    <tr *ngIf="showCity(user.address) ">
       <th scope="row">{{i+1}}</th>
       <td >{{user.name}}</td>
       <td>{{user.address}}</td>
@@ -36,6 +37,7 @@
     </tr>
     </tbody>
   </table>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
   <button type="button" (click)="reload()" class="btn btn-success">Refresh <i class="fa fa-refresh fa-spin" style="font-size:20px"></i></button>
 
   <!--  Modal add-->

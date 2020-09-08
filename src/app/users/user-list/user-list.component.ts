@@ -7,6 +7,8 @@ import {IUser} from './user';
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
+  message: string;
+  p = 1;
   newId: string;
   newName: string;
   newAddress: string;
@@ -84,8 +86,11 @@ export class UserListComponent implements OnInit {
   }
   // tslint:disable-next-line:typedef
   delete(id){
-    const index = this.searchUser.findIndex(user => user.id === id);
-    this.users.splice(index, 1);
+    if ( confirm('Are you sure?')){
+      const index = this.searchUser.findIndex(user => user.id === id);
+      this.users.splice(index, 1);
+      this.message = 'xoa thanh cong';
+    }
   }
   // tslint:disable-next-line:typedef
   edit(id){

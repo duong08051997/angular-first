@@ -1,15 +1,12 @@
-<div class="pt-3">
-  <div class="container">
-<div class="row">
-<div class="col-md-4">
-<app-pet></app-pet>
-<!--<app-font-size></app-font-size>-->
-<app-calculator></app-calculator>
-</div>
-<!--<app-color></app-color>-->
-<div class="col-md-8">
-<app-user-list></app-user-list>
-</div>
-</div>
-</div>
+<div class="container pt-3">
+<nav>
+  <a routerLink="register" class="link">Register</a>
+  <a routerLink="login" class="link">Login</a>
+  <a routerLink="pet" class="link">Pet Info</a>
+  <a routerLink="users" class="link">User list</a>
+  <a routerLink="age" class="link">Age Calculator </a>
+  <a routerLink="youtube" class="link">Youtube</a>
+</nav>
+  <br>
+<router-outlet></router-outlet>
 </div>
